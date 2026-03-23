@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ToDoListApi.API/ToDoListApi.API.csproj" Id="c4c20347-3354-4cde-a489-07c5c871517c" />
+    <Project Path="src/ToDoListApi.Application/ToDoListApi.Application.csproj" Id="5529a7f2-9370-46d1-9c9c-ca0213ffd3fa" />
+    <Project Path="src/ToDoListApi.Domain/ToDoListApi.Domain.csproj" Id="aa4e582e-2d00-4219-b057-b993a3281bdc" />
+    <Project Path="src/ToDoListApi.Infrastructure/ToDoListApi.Infrastructure.csproj" Id="582e5ef3-9d65-4181-bda0-8d9ead0c57cc" />
+  </Folder>
+</Solution>
