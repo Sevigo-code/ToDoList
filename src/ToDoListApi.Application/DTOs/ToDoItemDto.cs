@@ -1,6 +1,6 @@
-namespace ToDoListApi.Domain.Entities;
+namespace ToDoListApi.Application.DTOs;
 
-public class ToDoItem
+public class ToDoItemDto
 {
     public int Id { get; set; }
     public string Title { get; set; } = string.Empty;

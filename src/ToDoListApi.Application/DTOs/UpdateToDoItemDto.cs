@@ -1,11 +1,9 @@
-namespace ToDoListApi.Domain.Entities;
+namespace ToDoListApi.Application.DTOs;
 
-public class ToDoItem
+public class UpdateToDoItemDto
 {
-    public int Id { get; set; }
     public string Title { get; set; } = string.Empty;
     public string? Description { get; set; }
     public DateTime MaxCompletionDate { get; set; }
     public bool IsCompleted { get; set; }
-    public DateTime CreatedAt { get; set; }
 }

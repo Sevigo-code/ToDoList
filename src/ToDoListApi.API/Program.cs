@@ -1,23 +1,50 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using ToDoListApi.Application.Interfaces;
+using ToDoListApi.Application.Services;
+using ToDoListApi.Application.Validators;
+using ToDoListApi.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Add services
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// FluentValidation
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateToDoItemValidator>();
+
+// Application (Service)
+builder.Services.AddScoped<IToDoItemService, ToDoItemService>();
+
+// Infrastructure (DbContext, Repository)
+builder.Services.AddInfrastructure(builder.Configuration);
+
+// CORS para React
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReact", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure pipeline
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("AllowReact");
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
